@@ -1,13 +1,13 @@
 import {
     FlatList,
-    SafeAreaView,
     StyleSheet,
 } from 'react-native';
 
-import RecipeCard from '@/components/RecipeCard';
 import EmptyState from '@/components/EmptyState';
+import RecipeCard from '@/components/RecipeCard';
 
 import { useFavorites } from '@/hooks/useFavorites';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function FavoritesScreen() {
     const { favorites } = useFavorites();
