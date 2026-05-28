@@ -37,7 +37,11 @@ yarn-error.*
 *.tsbuildinfo
 
 example
+package-lock.json
+yarn.lock
 
 # generated native folders
 /ios
 /android
+
+.early.coverage
