@@ -6,22 +6,24 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "scheme": "tastyrecipes",
+
     "plugins": [
       "expo-router",
       [
         "expo-splash-screen",
         {
           "image": "./assets/splash.png",
-          "imageWidth": 200,
-          "resizeMode": "contain",
+          "resizeMode": "cover",
           "backgroundColor": "#FFF8F0"
         }
       ]
     ],
+
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.pxman.tastyrecipes"
     },
+
     "android": {
       "package": "com.pxman.tastyrecipes",
       "adaptiveIcon": {
@@ -30,6 +32,7 @@
       },
       "blockedPermissions": ["android.permission.SYSTEM_ALERT_WINDOW"]
     },
+
     "extra": {
       "router": {},
       "eas": {
