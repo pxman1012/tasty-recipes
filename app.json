@@ -20,14 +20,15 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.yourname.tastyrecipes"
+      "bundleIdentifier": "com.pxman.tastyrecipes"
     },
     "android": {
-      "package": "com.yourname.tastyrecipes",
+      "package": "com.pxman.tastyrecipes",
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "blockedPermissions": ["android.permission.SYSTEM_ALERT_WINDOW"]
     },
     "extra": {
       "router": {},
