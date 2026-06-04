@@ -1,56 +1,364 @@
-# Welcome to your Expo app 👋
+## 📥 Download APK
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Tải phiên bản Android mới nhất:
 
-## Get started
+[[APK Download Link](https://expo.dev/artifacts/eas/kXncdzbzKRBwRJ3uCHtqzD.apk)]
 
-1. Install dependencies
+Sau khi tải xuống, mở file APK để cài đặt trực tiếp trên thiết bị Android.
 
-   ```bash
-   npm install
-   ```
+# 🍽️ Tasty Recipes
 
-2. Start the app
+Ứng dụng mobile tra cứu công thức nấu ăn được xây dựng bằng **React Native**, **Expo Router** và **TypeScript**.
 
-   ```bash
-   npx expo start
-   ```
+Dữ liệu món ăn được lấy từ **TheMealDB API**, cho phép người dùng:
 
-In the output, you'll find options to open the app in a
+- Xem danh sách món ăn
+- Tìm kiếm món ăn theo tên
+- Xem chi tiết công thức
+- Xem nguyên liệu và định lượng
+- Lưu món ăn yêu thích
+- Quản lý danh sách yêu thích bằng AsyncStorage
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## 📱 Screens
 
-## Get a fresh project
+### Home
 
-When you're ready, run:
+- Hiển thị danh sách món ăn
+- Tìm kiếm theo tên
+- Điều hướng đến màn hình chi tiết
 
-```bash
-npm run reset-project
+### Recipe Detail
+
+- Ảnh món ăn
+- Tên món ăn
+- Danh sách nguyên liệu
+- Hướng dẫn chế biến
+- Thêm/Xóa khỏi danh sách yêu thích
+
+### Favorites
+
+- Hiển thị các món đã lưu
+- Xóa món khỏi danh sách yêu thích
+- Điều hướng đến trang chi tiết
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+- React Native
+- Expo
+- Expo Router
+- TypeScript
+
+### State Management
+
+- React Hooks
+  - useState
+  - useEffect
+
+### Networking
+
+- Axios
+
+### Local Storage
+
+- AsyncStorage
+
+### API
+
+- TheMealDB
+
+---
+
+## 📂 Project Structure
+
+```text
+src
+├── app
+│   ├── (tabs)
+│   │   ├── index.tsx
+│   │   ├── favorites.tsx
+│   │   └── _layout.tsx
+│   ├── recipe
+│   │   └── [id].tsx
+│   └── _layout.tsx
+│
+├── components
+│   ├── EmptyState.tsx
+│   ├── Loading.tsx
+│   ├── RecipeCard.tsx
+│   └── SearchBar.tsx
+│
+├── hooks
+│   ├── useFavorites.ts
+│   └── useRecipes.ts
+│
+├── screen
+│   ├── HomeScreen.tsx
+│   ├── RecipeDetailScreen.tsx
+│   └── FavoritesScreen.tsx
+│
+├── services
+│   ├── api.ts
+│   └── mealApi.ts
+│
+├── storage
+│   └── favorite.ts
+│
+└── types
+    └── meal.ts
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-### Other setup steps
+## 🚀 Installation
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+### Clone project
 
-## Learn more
+```bash
+git clone <repository-url>
+cd tasty-recipes
+```
 
-To learn more about developing your project with Expo, look at the following resources:
+### Install dependencies
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+npm install
+```
 
-## Join the community
+### Start development server
 
-Join our community of developers creating universal apps.
+```bash
+npm run start
+```
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+---
+
+## ▶️ Run Application
+
+### Android
+
+```bash
+npm run android
+```
+
+### iOS
+
+```bash
+npm run ios
+```
+
+### Web
+
+```bash
+npm run web
+```
+
+---
+
+## 🌐 API
+
+Dự án sử dụng:
+
+- TheMealDB API
+
+Tài liệu:
+
+https://www.themealdb.com/api.php
+
+Ví dụ:
+
+### Danh sách món ăn
+
+```http
+GET https://www.themealdb.com/api/json/v1/1/search.php?s=
+```
+
+### Tìm kiếm món ăn
+
+```http
+GET https://www.themealdb.com/api/json/v1/1/search.php?s=chicken
+```
+
+### Chi tiết món ăn
+
+```http
+GET https://www.themealdb.com/api/json/v1/1/lookup.php?i=52772
+```
+
+---
+
+## ❤️ Favorite Storage
+
+Danh sách yêu thích được lưu cục bộ bằng AsyncStorage.
+
+Các chức năng:
+
+- Lưu món yêu thích
+- Kiểm tra trạng thái yêu thích
+- Xóa món yêu thích
+- Đọc toàn bộ danh sách yêu thích
+
+---
+
+## ✨ Features
+
+- [x] Browse recipes
+- [x] Search recipes
+- [x] View recipe details
+- [x] Display ingredients
+- [x] Display cooking instructions
+- [x] Save favorite recipes
+- [x] Remove favorite recipes
+- [x] Persistent local storage
+
+---
+
+## 📄 License
+
+This project is for learning and educational purposes.
+
+## 📦 Build Release App
+
+Dự án sử dụng Expo nên có thể build file cài đặt bằng EAS Build.
+
+### Cài đặt EAS CLI
+
+```bash
+npm install -g eas-cli
+```
+
+Đăng nhập Expo:
+
+```bash
+eas login
+```
+
+Khởi tạo cấu hình build:
+
+```bash
+eas build:configure
+```
+
+---
+
+## 🤖 Build APK (Android)
+
+Build file APK để cài trực tiếp trên thiết bị Android:
+
+```bash
+eas build --platform android --profile preview
+```
+
+Hoặc:
+
+```bash
+eas build -p android
+```
+
+Sau khi build hoàn tất, Expo sẽ cung cấp link tải file `.apk`.
+
+### Cài đặt APK
+
+1. Tải file APK về điện thoại
+2. Cho phép cài đặt từ nguồn không xác định (Unknown Sources)
+3. Mở file APK
+4. Chọn Install
+
+---
+
+## 🤖 Build AAB (Google Play)
+
+Build file Android App Bundle:
+
+```bash
+eas build --platform android --profile production
+```
+
+File tạo ra:
+
+```text
+.aab
+```
+
+Dùng để phát hành lên Google Play Store.
+
+---
+
+## 🍎 Build iOS
+
+Build file iOS:
+
+```bash
+eas build --platform ios
+```
+
+Expo sẽ tạo file:
+
+```text
+.ipa
+```
+
+Có thể cài qua:
+
+- TestFlight
+- Apple Configurator
+- MDM
+- Ad Hoc Distribution
+
+---
+
+## 📲 Local Development Build
+
+Tạo bản Development Build:
+
+```bash
+eas build --profile development --platform android
+```
+
+hoặc
+
+```bash
+eas build --profile development --platform ios
+```
+
+---
+
+## 🔍 Kiểm tra cấu hình
+
+```bash
+eas build:list
+```
+
+Xem lịch sử build:
+
+```bash
+eas build:list --limit 10
+```
+
+---
+
+## 📋 Build Profiles
+
+Ví dụ `eas.json`:
+
+```json
+{
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "distribution": "internal"
+    },
+    "production": {
+      "autoIncrement": true
+    }
+  }
+}
+```

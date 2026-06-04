@@ -4,6 +4,7 @@ import {
     ScrollView,
     StyleSheet,
     Text,
+    View,
 } from 'react-native';
 
 import { useEffect, useState } from 'react';
@@ -63,6 +64,32 @@ export default function RecipeDetailScreen({
 
     if (!meal) return null;
 
+    const ingredients = Object.keys(meal)
+        .filter(key => key.startsWith('strIngredient'))
+        .map(key => {
+            const index = key.replace('strIngredient', '');
+
+            const ingredient =
+                meal[key as keyof Meal];
+
+            const measure =
+                meal[
+                `strMeasure${index}` as keyof Meal
+                ];
+
+            return {
+                ingredient:
+                    typeof ingredient === 'string'
+                        ? ingredient.trim()
+                        : '',
+                measure:
+                    typeof measure === 'string'
+                        ? measure.trim()
+                        : '',
+            };
+        })
+        .filter(item => item.ingredient);
+
     return (
         <ScrollView style={styles.container}>
             <Image
@@ -93,6 +120,40 @@ export default function RecipeDetailScreen({
                         : '🤍 Add To Favorites'}
                 </Text>
             </Pressable>
+
+            <Text style={styles.sectionTitle}>
+                🥕 Ingredients
+            </Text>
+
+            <View style={styles.ingredientsContainer}>
+                {ingredients.map((item, index) => (
+                    <View
+                        key={index}
+                        style={styles.ingredientCard}
+                    >
+                        <Image
+                            source={{
+                                uri: `https://www.themealdb.com/images/ingredients/${encodeURIComponent(
+                                    item.ingredient
+                                )}.png`,
+                            }}
+                            style={styles.ingredientImage}
+                        />
+
+                        <Text style={styles.measure}>
+                            {item.measure}
+                        </Text>
+
+                        <Text style={styles.ingredientName}>
+                            {item.ingredient}
+                        </Text>
+                    </View>
+                ))}
+            </View>
+
+            <Text style={styles.sectionTitle}>
+                📖 Instructions
+            </Text>
 
             <Text style={styles.instructions}>
                 {meal.strInstructions}
@@ -130,6 +191,46 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontWeight: '700',
         fontSize: 16,
+    },
+
+    sectionTitle: {
+        fontSize: 24,
+        fontWeight: '700',
+        paddingHorizontal: 16,
+        marginTop: 20,
+        marginBottom: 12,
+        color: '#2C3E50',
+    },
+
+    ingredientsContainer: {
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+        padding: 16
+    },
+
+    ingredientCard: {
+        width: '30%',
+        alignItems: 'center',
+        marginBottom: 16,
+    },
+
+    ingredientImage: {
+        width: 80,
+        height: 80,
+        resizeMode: 'contain',
+    },
+
+    measure: {
+        fontSize: 12,
+        color: '#666',
+        textAlign: 'center',
+    },
+
+    ingredientName: {
+        fontSize: 14,
+        fontWeight: '600',
+        textAlign: 'center',
     },
 
     instructions: {
