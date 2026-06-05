@@ -205,14 +205,13 @@ const styles = StyleSheet.create({
     ingredientsContainer: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        justifyContent: 'space-between',
-        padding: 16
+        paddingHorizontal: 16,
     },
 
     ingredientCard: {
-        width: '30%',
+        width: '33.333%',
         alignItems: 'center',
-        marginBottom: 16,
+        paddingVertical: 12,
     },
 
     ingredientImage: {

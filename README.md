@@ -2,7 +2,7 @@
 
 Tải phiên bản Android mới nhất:
 
-[[APK Download Link](https://expo.dev/artifacts/eas/kXncdzbzKRBwRJ3uCHtqzD.apk)]
+[[APK Download Link](https://expo.dev/artifacts/eas/qpBBvgvjEvSVk91WJEVCR7.apk)]
 
 Sau khi tải xuống, mở file APK để cài đặt trực tiếp trên thiết bị Android.
 
@@ -86,6 +86,8 @@ src
 │   ├── recipe
 │   │   └── [id].tsx
 │   └── _layout.tsx
+│   └── index.tsx
+│   └── welcome.tsx
 │
 ├── components
 │   ├── EmptyState.tsx
