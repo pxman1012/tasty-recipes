@@ -1,6 +1,8 @@
 import {
     FlatList,
+    Pressable,
     StyleSheet,
+    Text,
     View,
 } from 'react-native';
 
@@ -28,6 +30,9 @@ import {
 export default function HomeScreen() {
     const [search, setSearch] =
         useState('');
+
+    const [showFilters, setShowFilters] =
+        useState(false);
 
     const [category, setCategory] =
         useState('');
@@ -75,28 +80,49 @@ export default function HomeScreen() {
 
     return (
         <SafeAreaView style={styles.container}>
-            <SearchBar
-                value={search}
-                onChange={setSearch}
-            />
+            <View style={styles.searchRow}>
+                <View style={styles.searchContainer}>
+                    <SearchBar
+                        value={search}
+                        onChange={setSearch}
+                    />
+                </View>
 
-            <CategoryFilter
-                categories={categories}
-                selected={category}
-                onSelect={value => {
-                    setCategory(value);
-                    setArea('');
-                }}
-            />
+                <Pressable
+                    style={styles.filterButton}
+                    onPress={() =>
+                        setShowFilters(
+                            !showFilters
+                        )
+                    }
+                >
+                    <Text style={styles.filterIcon}>
+                        ⚙️
+                    </Text>
+                </Pressable>
+            </View>
 
-            {/* <AreaFilter
-                areas={areas}
-                selected={area}
-                onSelect={value => {
-                    setArea(value);
-                    setCategory('');
-                }}
-            /> */}
+            {showFilters && (
+                <>
+                    <CategoryFilter
+                        categories={categories}
+                        selected={category}
+                        onSelect={value => {
+                            setCategory(value);
+                            setArea('');
+                        }}
+                    />
+
+                    {/* <AreaFilter
+                        areas={areas}
+                        selected={area}
+                        onSelect={value => {
+                            setArea(value);
+                            setCategory('');
+                        }}
+                    /> */}
+                </>
+            )}
 
             <View style={styles.listContainer}>
                 {loading ? (
@@ -134,5 +160,42 @@ const styles = StyleSheet.create({
 
     listContainer: {
         flex: 1,
+    },
+
+    searchRow: {
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+    },
+
+    searchContainer: {
+        flex: 1,
+    },
+
+    filterButton: {
+        width: 50,
+        height: 50,
+
+        marginLeft: 8,
+
+        backgroundColor: '#FFFFFF',
+
+        borderRadius: 12,
+
+        justifyContent: 'center',
+        alignItems: 'center',
+
+        shadowColor: '#000',
+        shadowOpacity: 0.08,
+        shadowRadius: 4,
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+
+        elevation: 2,
+    },
+
+    filterIcon: {
+        fontSize: 20,
     },
 });
