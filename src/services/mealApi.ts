@@ -26,3 +26,56 @@ export const getMealDetail = async (
 
     return data.meals[0];
 };
+
+export const getCategories =
+    async (): Promise<string[]> => {
+        const response = await fetch(
+            `${BASE_URL}/list.php?c=list`
+        );
+
+        const data = await response.json();
+
+        return data.meals.map(
+            (item: any) =>
+                item.strCategory
+        );
+    };
+
+export const getAreas =
+    async (): Promise<string[]> => {
+        const response = await fetch(
+            `${BASE_URL}/list.php?a=list`
+        );
+
+        const data = await response.json();
+
+        return data.meals.map(
+            (item: any) => item.strArea
+        );
+    };
+
+export const filterByCategory =
+    async (
+        category: string
+    ): Promise<Meal[]> => {
+        const response = await fetch(
+            `${BASE_URL}/filter.php?c=${category}`
+        );
+
+        const data = await response.json();
+
+        return data.meals || [];
+    };
+
+export const filterByArea =
+    async (
+        area: string
+    ): Promise<Meal[]> => {
+        const response = await fetch(
+            `${BASE_URL}/filter.php?a=${area}`
+        );
+
+        const data = await response.json();
+
+        return data.meals || [];
+    };

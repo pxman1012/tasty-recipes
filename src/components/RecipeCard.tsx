@@ -1,22 +1,23 @@
 import {
-    Image,
+    // Image,
     Pressable,
     StyleSheet,
     Text,
     View,
 } from 'react-native';
 
+import { Image } from 'expo-image';
+
 import { router } from 'expo-router';
 
 import { Meal } from '@/types/meal';
+import { memo } from 'react';
 
 interface Props {
     item: Meal;
 }
 
-export default function RecipeCard({
-    item,
-}: Props) {
+function RecipeCard({ item }: Props) {
     return (
         <Pressable
             style={styles.card}
@@ -29,11 +30,34 @@ export default function RecipeCard({
                 })
             }
         >
-            <Image
+            {/* <Image
                 source={{
                     uri: item.strMealThumb,
                 }}
                 style={styles.image}
+            /> */}
+
+            {/* <Image
+                source={item.strMealThumb}
+                style={styles.image}
+                contentFit="cover"
+                cachePolicy="memory-disk"
+                transition={200}
+            /> */}
+
+            <Image
+                source={item.strMealThumb}
+                style={styles.image}
+                contentFit="cover"
+                cachePolicy="memory-disk"
+                transition={200}
+                // placeholder={require(
+                //     '@/assets/placeholder.png'
+                // )}
+                placeholder={{
+                    blurhash:
+                        'LGFFaXYk^6#M@-5c,1J5@[or[Q6.'
+                }}
             />
 
             <View style={styles.content}>
@@ -44,6 +68,8 @@ export default function RecipeCard({
         </Pressable>
     );
 }
+
+export default memo(RecipeCard);
 
 const styles = StyleSheet.create({
     card: {
